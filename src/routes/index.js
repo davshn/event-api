@@ -1,14 +1,17 @@
-const { Router } = require('express');
-const login=require("./login")
-const register=require("./register")
-const events=require("./events")
+const { Router } = require("express");
 
-const db = require('../db');
+const register=require("./register")
+const login=require("./login")
+const events=require("./events")
 const router = Router();
 
-router.use("/login",login)
+
 router.use("/register",register)
+router.use("/login",login)
 router.use("/events",events)
+
+
+
 
 
 
