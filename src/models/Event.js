@@ -1,12 +1,59 @@
-const { DataTypes } = require('sequelize');
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+const { DataTypes } = require("sequelize");
+
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    'event', 
-    { id: {type: DataTypes.UUID, defaultValue: DataTypes.UUIDV4, primaryKey: true},
-      name: {type: DataTypes.STRING, allowNull: false},
+    "event",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        allowNull: false,
+      },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      place: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      date: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      creators: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
+      price: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      rating: {
+        type: DataTypes.FLOAT,
+        allowNull: false,
+      },
+      category: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
+      chatbox: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: true,
+      },
+      eventpic: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      eventvid: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      comment: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
     },
     { timestamps: false }
   );
