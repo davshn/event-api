@@ -35,8 +35,8 @@ const { Event,User } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
-User.belongsToMany(Event, { through: UserEvent });
-Event.belongsToMany(User, { through: UserEvent });
+User.belongsToMany(Event, { through: "UserEvent" });
+Event.belongsToMany(User, { through: "UserEvent" });
 
 
 module.exports = {
