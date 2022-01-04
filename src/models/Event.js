@@ -38,15 +38,15 @@ module.exports = (sequelize) => {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
-      chatbox: {
+      chatBox: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },
-      eventpic: {
+      eventPic: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      eventvid: {
+      eventVid: {
         type: DataTypes.STRING,
         allowNull: true,
       },
