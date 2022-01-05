@@ -19,6 +19,7 @@
   "homepage": "https://github.com/davshn/event-api#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
     "chai": "^4.3.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",

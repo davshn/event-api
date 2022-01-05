@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
+        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,
@@ -17,8 +18,8 @@ module.exports = (sequelize) => {
 
       password: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
+        allowNull: false,
+      },
       dateOfBirth: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -32,20 +33,23 @@ module.exports = (sequelize) => {
       email: {
         type: DataTypes.STRING,
         validate: { isEmail: true },
+        allowNull: false,
       },
       verifyProfile: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
 
       interests: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
+        allowNull: true,
       },
 
       termsAndconditions: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
       },
     },
     { timestamps: false }
