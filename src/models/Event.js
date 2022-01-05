@@ -35,7 +35,8 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       category: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.ENUM(['Karaoke', 'Fiesta','After','Concierto','Evento cultural','Deporte','Gastronomía']),
+        
         allowNull: false,
       },
       chatBox: {
