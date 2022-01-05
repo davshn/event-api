@@ -35,7 +35,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       category: {
-        type: DataTypes.ENUM(['Karaoke', 'Fiestas','After','Concierto','Eventos culturales','Deporte','Gastronomía']),
+        type: DataTypes.ENUM(['Karaoke', 'Fiesta','After','Concierto','Evento cultural','Deporte','Gastronomía']),
         
         allowNull: false,
       },
