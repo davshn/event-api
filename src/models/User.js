@@ -44,7 +44,7 @@ module.exports = (sequelize) => {
 
       interests: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true,
+        allowNull: false,
       },
 
       termsAndconditions: {
