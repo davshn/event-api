@@ -31,10 +31,10 @@ router.post("/", async (req, res) => {
      
       res.status(200).json(token);
     } else {
-      res.status(400).send("El usuario no existe");
+      res.status(402).send("El usuario no existe");
     }
   } catch (error) {
-    res.status(400).send("Error en el login");
+    res.status(405).send("Error en el login");
   }
 });
 
