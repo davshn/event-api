@@ -6,7 +6,6 @@ const path = require('path');
 const {
   DB,
 } = process.env;
-//postgres://pdxyylbwttzwwz:2ec73331371bfe5bf5fc1a566787767ad5d52378e241fab1b758ce3310a19ef0@ec2-34-232-25-204.compute-1.amazonaws.com:5432/df171ueoo8vdcc
 sequelize = new Sequelize(DB, {
   dialectOptions: {
     ssl: {
