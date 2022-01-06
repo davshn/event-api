@@ -34,6 +34,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         validate: { isEmail: true },
         allowNull: false,
+        unique:true,
       },
       verifyProfile: {
         type: DataTypes.BOOLEAN,
@@ -43,7 +44,7 @@ module.exports = (sequelize) => {
 
       interests: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: true,
+        allowNull: false,
       },
 
       termsAndconditions: {
