@@ -34,6 +34,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         validate: { isEmail: true },
         allowNull: false,
+        unique:true,
       },
       verifyProfile: {
         type: DataTypes.BOOLEAN,
