@@ -10,21 +10,28 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       description: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       place: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       date: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+      },
+      time: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       creators: {
         type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
       },
       price: {
         type: DataTypes.FLOAT,
@@ -32,11 +39,11 @@ module.exports = (sequelize) => {
       },
       rating: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: 5.0,
       },
       category: {
-        type: DataTypes.ENUM(['Karaoke', 'Fiesta','After','Concierto','Evento cultural','Deporte','Gastronomía']),
-        
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
       chatBox: {
@@ -53,7 +60,7 @@ module.exports = (sequelize) => {
       },
       comment: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
     },
     { timestamps: false }
