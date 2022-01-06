@@ -4,13 +4,19 @@ const fs = require('fs');
 const path = require('path');
 
 const {
-  DB_USER, DB_PASSWORD, DB_HOST,
+  DB,
 } = process.env;
+//postgres://pdxyylbwttzwwz:2ec73331371bfe5bf5fc1a566787767ad5d52378e241fab1b758ce3310a19ef0@ec2-34-232-25-204.compute-1.amazonaws.com:5432/df171ueoo8vdcc
+sequelize = new Sequelize(DB, {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
+}
+);
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/findspot`, {
-  logging: false, // set to console.log to see the raw SQL queries
-  native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
