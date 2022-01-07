@@ -3,7 +3,7 @@ const { Category } = require("../db.js");
 const auth = require("../Middleware/auth");
 const router = Router();
 
-router.get("/", auth, async (req, res) => {
+router.get("/",  async (req, res) => {
 
   try {
   let category=["Karaoke","Fiesta","Deporte","After","Concierto","Cultural","Gastronomía"]
