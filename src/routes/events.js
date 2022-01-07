@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const { Event } = require("../db")
+const { Event , User} = require("../db")
+
 
 const router = Router();
 
@@ -25,5 +26,26 @@ router.post('/', async function(req, res) {
         }}); 
     res.json(newEvent);
 });
+
+const cardEvent = async()=>{
+    const event = await Event.findAll()
+    const cards = event.map(el =>{ 
+        return{
+            id: el.id,
+            name: el.name,
+            eventPic: el.eventPic,
+            date: el.date,
+            time: el.time,
+            price: el.price
+        }
+    })
+    return cards;
+}
+router.get('/', async(req,res)=>{
+    const allCards = await cardEvent();
+    res.status(200).send(allCards);
+
+})
+
 
 module.exports = router;
