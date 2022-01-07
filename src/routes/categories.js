@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { Category } = require("../db.js");
+const auth = require("../Middleware/auth");
 const router = Router();
 
 router.get("/",  async (req, res) => {
