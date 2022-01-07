@@ -3,13 +3,13 @@ const { Country } = require('country-state-city');
 
 const router = Router();
 
-router.get("/countries", async (req, res) => {
+router.get("/countries", (req, res) => {
     try {
         const countriesJson = Country.getAllCountries();
         const countriesList = countriesJson.map(country => {
             return {
                 name: country.name,
-                countryCode: country.countryCode
+                idCountry: country.isoCode
             }
         });
         res.status(200).send(countriesList);
