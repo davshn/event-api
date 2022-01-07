@@ -3,7 +3,8 @@ const { Router } = require("express");
 const register=require("./register")
 const login=require("./login")
 const events=require("./events")
-const categories=require("./categories")
+const categories = require("./categories")
+const country= require("./country-city")
 const router = Router();
 
 
@@ -12,7 +13,7 @@ router.use("/login",login)
 router.use("/events",events)
 router.use("/categories",categories)
 
-router.use("/country-city",categories)
+router.use("/country-city",country)
 
 
 
