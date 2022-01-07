@@ -23,6 +23,7 @@
     "chai": "^4.3.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "country-state-city": "^3.0.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "ioredis": "^4.28.2",

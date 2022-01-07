@@ -12,8 +12,7 @@ router.use("/login",login)
 router.use("/events",events)
 router.use("/categories",categories)
 
-
-
+router.use("/country-city",categories)
 
 
 
