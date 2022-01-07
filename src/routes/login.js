@@ -26,10 +26,16 @@ router.post("/", async (req, res) => {
           expiresIn: "2h",
         }
       );
-
+      
       user.token = token;
-     
-      res.status(200).json(token);
+      const loggedUser = {
+        token: user.token,
+        id: user.id,
+        name: user.name,
+        interests: user.interests
+      }
+      
+      res.status(200).json(loggedUser);
     } else {
       res.status(402).send("El usuario no existe");
     }
