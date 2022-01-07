@@ -9,12 +9,9 @@ const router = Router();
 
 router.use("/register",register)
 router.use("/login",login)
+router.use("/event",events)
 router.use("/events",events)
 router.use("/categories",categories)
-
-
-
-
 
 
 module.exports = router;
