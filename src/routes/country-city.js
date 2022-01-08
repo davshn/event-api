@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Country } = require('country-state-city');
+const { Country, City } = require("country-state-city");
 
 const router = Router();
 
@@ -21,7 +21,7 @@ router.get("/countries", (req, res) => {
 router.get("/cities", async (req, res) => {
     const { countryCode } = req.body;
     try {
-        const citiesJson = Country.getCitiesOfCountry(countryCode);
+        const citiesJson = City.getCitiesOfCountry(countryCode);
         const citiesList = citiesJson.map(city => {
             return {
                 name: city.name,
