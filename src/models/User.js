@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       },
 
       profilePic: {
-        type: DataTypes.STRING,
+        type: DataTypes.BLOB,
         allowNull: true,
       },
 
