@@ -6,9 +6,9 @@ module.exports = (sequelize) => {
     "event",
     {
       id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        allowNull: false,
+        type: DataTypes.UUID, 
+        defaultValue: DataTypes.UUIDV4, 
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       time: {
-        type: DataTypes.STRING,
+        type: DataTypes.TIME,
         allowNull: false,
       },
       creators: {
