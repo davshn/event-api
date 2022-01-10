@@ -49,6 +49,11 @@ Event.belongsToMany(User, { through: "UserEvent" });
 Event.belongsToMany(Category, { through: "EventCategory" });
 Category.belongsToMany(Event, { through: "EventCategory" });
 
+// Relación entre usuarios y categorias M:M
+User.belongsToMany(Category, { through: "UserCategory" });
+Category.belongsToMany(User, { through: "UserCategory" });
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
