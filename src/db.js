@@ -42,16 +42,16 @@ const { Event, User, Category } = sequelize.models;
 // Product.hasMany(Reviews);
 
 // Relación entre usuarios y eventos M:M
-User.belongsToMany(Event, { through: "UserEvent" });
-Event.belongsToMany(User, { through: "UserEvent" });
+User.belongsToMany(Event, { through: "userevent" });
+Event.belongsToMany(User, { through: "userevent" });
 
 // Relación entre eventos y categorias M:M
-Event.belongsToMany(Category, { through: "EventCategory" });
-Category.belongsToMany(Event, { through: "EventCategory" });
+Event.belongsToMany(Category, { through: "eventcategory" });
+Category.belongsToMany(Event, { through: "eventcategory" });
 
 // Relación entre usuarios y categorias M:M
-User.belongsToMany(Category, { through: "UserCategory" });
-Category.belongsToMany(User, { through: "UserCategory" });
+User.belongsToMany(Category, { through: "usercategory" });
+Category.belongsToMany(User, { through: "usercategory" });
 
 
 
