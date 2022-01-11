@@ -10,7 +10,7 @@ sequelize = new Sequelize(DB, {
   dialectOptions: {
     ssl: {
       require: true,
-      rejectUnauthorized: false
+      rejectUnauthorized: false,logging: false
     }
   }
 }
