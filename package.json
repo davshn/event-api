@@ -33,6 +33,7 @@
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",
     "sequelize": "^7.0.0-alpha.4",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "stripe": "^8.196.0"
   }
 }
