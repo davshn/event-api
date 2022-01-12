@@ -8,10 +8,12 @@ router.post("/", async (req, res) => {
   try {
     const { name } = req.body;
     if (!name) return res.status(400).json({ message: "Please enter a name" });
+
+
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(25 * 100),
-      currency: "usd",
-      payment_method_types: ["card", "paypal"],
+      amount: Math.round(25 * 20),
+      currency: "eur",
+      payment_method_types: ["card","paypal"],
       metadata: { name },
     });
     const clientSecret= paymentIntent.client_secret;
@@ -19,7 +21,7 @@ router.post("/", async (req, res) => {
     res.json({message:'Payment initiated ', clientSecret})
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "error in the payment" });
+    res.status(500).json({ message: "payment error back " });
   }
 });
 
