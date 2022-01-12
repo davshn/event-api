@@ -67,6 +67,7 @@ router.get("/filters", async (req, res) => {
     initialPrice,
     finalPrice,
   } = req.body;
+  console.log(req.body)
 
   let options = { where: { [Op.and]: [] } };
 
