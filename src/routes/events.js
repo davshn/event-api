@@ -57,35 +57,53 @@ router.get("/", async (req, res) => {
   res.status(200).send(allCards);
 });
 
-router.get("/filter", async (req, res) => {
-    const allCards = await cardEvent();
-    res.status(200).send(allCards);
-  });
+router.get("/filters", async (req, res) => {
+  const {
+    name,
+    category,
+    rating,
+    initialDate,
+    finalDate,
+    initialPrice,
+    finalPrice,
+  } = req.body;
 
-const filterByName = async (name) => {
-  try {
-    let dataByName = await Event.findAll({
-      where: {
-        name: { [Op.iLike]: "%" + name + "%" },
-      },
-    });
-    console.log(dataByName);
-    return dataByName;
-  } catch (error) {
-    return "Evento no encontrado";
+  let options = { where: { [Op.and]: [] } };
+
+  if (name) {
+    options.where[Op.and].push({ name: { [Op.iLike]: "%" + name + "%" } });
   }
-};
 
-// router.get("/filter", async (req, res) => {
-//   const { name } = req.body;
+  if (rating) {
+    options.where[Op.and].push({ rating: { [Op.eq]: rating } });
+  }
 
-//   if (name) {
-//     let filteredByName = await filterByName(name);
+  if (category) {
+    options.where[Op.and].push({ category: { [Op.contains]: category } });
+  }
 
-//     filteredByName.length
-//       ? res.status(200).send(filteredByName)
-//       : res.status(400).send("No existe el evento");
-//   }
-// });
+  if ((initialDate, finalDate)) {
+    options.where[Op.and].push({
+      [Op.and]: [
+        { date: { [Op.gte]: initialDate } },
+        { date: { [Op.lte]: finalDate } },
+      ],
+    });
+  }
+
+  if ((initialPrice, finalPrice)) {
+    options.where[Op.and].push({
+      [Op.and]: [
+        { price: { [Op.gte]: initialPrice } },
+        { price: { [Op.lte]: finalPrice } },
+      ],
+    });
+  }
+
+  Event.findAll(options).then((response) => {
+    res.send(response);
+  });
+  console.log(options);
+});
 
 module.exports = router;
