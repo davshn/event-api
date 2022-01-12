@@ -57,7 +57,7 @@ router.get("/", async (req, res) => {
   res.status(200).send(allCards);
 });
 
-router.get("/filters", async (req, res) => {
+router.post("/filters", async (req, res) => {
   const {
     name,
     category,
