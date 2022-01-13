@@ -6,10 +6,10 @@ module.exports = (sequelize) => {
     "user",
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
-        autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,
@@ -26,7 +26,7 @@ module.exports = (sequelize) => {
       },
 
       profilePic: {
-        type: DataTypes.BLOB,
+        type: DataTypes.STRING,
         allowNull: true,
       },
 
@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         validate: { isEmail: true },
         allowNull: false,
-        unique:true,
+        unique: true,
       },
       verifyProfile: {
         type: DataTypes.BOOLEAN,
