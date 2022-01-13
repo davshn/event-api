@@ -18,6 +18,8 @@ router.post("/", async function (req, res) {
     eventPic,
     eventVid,
     comment,
+    longitude,
+    latitude
   } = req.body;
   try {
     let newEvent = await Event.create({
@@ -31,6 +33,8 @@ router.post("/", async function (req, res) {
       category,
       eventPic,
       eventVid,
+      longitude,
+      latitude
     });
     res.json(newEvent);
   } catch (error) {
