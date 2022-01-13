@@ -18,6 +18,8 @@ router.post("/", async function (req, res) {
     eventPic,
     eventVid,
     comment,
+    longitude,
+    latitude
   } = req.body;
   try {
     let newEvent = await Event.create({
@@ -31,6 +33,8 @@ router.post("/", async function (req, res) {
       category,
       eventPic,
       eventVid,
+      longitude,
+      latitude
     });
     res.json(newEvent);
   } catch (error) {
@@ -57,7 +61,7 @@ router.get("/", async (req, res) => {
   res.status(200).send(allCards);
 });
 
-router.get("/filters", async (req, res) => {
+router.post("/filters", async (req, res) => {
   const {
     name,
     category,
@@ -67,6 +71,7 @@ router.get("/filters", async (req, res) => {
     initialPrice,
     finalPrice,
   } = req.body;
+  console.log(req.body)
 
   let options = { where: { [Op.and]: [] } };
 
@@ -75,7 +80,7 @@ router.get("/filters", async (req, res) => {
   }
 
   if (rating) {
-    options.where[Op.and].push({ rating: { [Op.eq]: rating } });
+    options.where[Op.and].push({ rating: { [Op.gte]: rating } });
   }
 
   if (category) {

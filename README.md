@@ -33,7 +33,7 @@ Ejecutar el comando `npm start` por consola, comienza a correr el back end de la
 _Version Node.js utilizada_
 
 ```
-v14.15.4
+v16.13.2
 ```
 _Version npm utilizada_
 
