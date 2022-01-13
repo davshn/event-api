@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const express = require("express")
 
 const payments = require("./payments")
 const register=require("./register")
@@ -9,7 +10,7 @@ const categories = require("./categories")
 const country= require("./country-city")
 const router = Router();
 
-
+router.use("/stripe", express.raw({ type: "*/*" }));
 router.use("/pay",payments)
 router.use("/register",register)
 router.use("/login",login)
