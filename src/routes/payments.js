@@ -7,7 +7,7 @@ const router = Router();
 router.post("/", async (req, res) => {
   try {
     const { name } = req.body;
-    if (!name) return res.status(400).json({ message: "Please enter a name" });
+    if (!name) return res.status(400).json({ message: "Debes ingresar para comprar" });
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(25 * 20),
