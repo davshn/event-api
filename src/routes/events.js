@@ -76,7 +76,7 @@ router.post("/filters", async (req, res) => {
   }
 
   if (rating) {
-    options.where[Op.and].push({ rating: { [Op.eq]: rating } });
+    options.where[Op.and].push({ rating: { [Op.gte]: rating } });
   }
 
   if (category) {
