@@ -2,8 +2,6 @@ const { Router } = require("express");
 const { User } = require("../db.js");
 const bcrypt = require("bcrypt");
 const router = Router();
-const ApiKey = require ("../emailJS")
-const emailjs = require("emailjs");
 
 router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
