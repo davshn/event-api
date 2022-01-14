@@ -52,6 +52,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
+      verificationCode : {
+        type: DataTypes.UUID,
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+      },
     },
     { timestamps: false }
   );
