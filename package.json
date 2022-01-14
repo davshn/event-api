@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/davshn/event-api#readme",
   "dependencies": {
+    "@emailjs/browser": "^3.4.0",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "chai": "^4.3.4",
