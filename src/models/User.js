@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
-      verificationCode : {
+      verificationCode: {
         type: DataTypes.UUID,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
