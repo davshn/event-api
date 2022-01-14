@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
       dateOfBirth: req.body.dateOfBirth,
       name: req.body.name,
       profilePic: req.body.profilePic,
-      email: req.body.email,
+      email: req.body.email.toLowerCase(),
       verifyProfile: req.body.verifyProfile,
       interests: req.body.interests,
       termsAndconditions: req.body.termsAndconditions,

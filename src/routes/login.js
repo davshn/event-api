@@ -4,19 +4,18 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const router = Router();
 
-const {
-    TOKEN_KEY
-  } = process.env;
+const { TOKEN_KEY } = process.env;
 
 router.post("/", async (req, res) => {
   try {
-    const { email, password } = req.body;
-    console.log(req.body);
+    const email = req.body.email.toLowerCase();
+    const password = req.body.password;
+
     if (!(email && password)) {
       res.status(400).send("All input is required");
     }
 
-    const user = await User.findOne({ where: { email }});
+    const user = await User.findOne({ where: { email } });
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const token = jwt.sign(
@@ -26,15 +25,15 @@ router.post("/", async (req, res) => {
           expiresIn: "2h",
         }
       );
-      
+
       user.token = token;
       const loggedUser = {
         token: user.token,
         id: user.id,
         name: user.name,
-        interests: user.interests
-      }
-      
+        interests: user.interests,
+      };
+
       res.status(200).json(loggedUser);
     } else {
       res.status(402).send("El usuario no existe");
