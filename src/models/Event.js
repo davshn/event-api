@@ -31,9 +31,6 @@ module.exports = (sequelize) => {
         type: DataTypes.TIME,
         allowNull: false,
       },
-      creators: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-      },
       price: {
         type: DataTypes.FLOAT,
         allowNull: false,
