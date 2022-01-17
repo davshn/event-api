@@ -22,19 +22,22 @@ router.post("/", async function (req, res) {
     latitude
   } = req.body;
   try {
-    let newEvent = await Event.create({
-      name,
-      description,
-      place,
-      date,
-      time,
-      creators,
-      price,
-      category,
-      eventPic,
-      eventVid,
-      longitude,
-      latitude
+    let newEvent = await Event.findOrCreate(
+      {where:{
+        name:name, date: date, time: time
+      },
+      defaults:{
+        description,
+        place,
+        creators,
+        price,
+        category,
+        eventPic,
+        eventVid,
+        longitude,
+        latitude
+      }
+
     });
     res.json(newEvent);
   } catch (error) {
