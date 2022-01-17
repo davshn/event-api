@@ -41,12 +41,6 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: false,
       },
-
-      interests: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-      },
-
       termsAndconditions: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
