@@ -23,7 +23,8 @@ router.post("/", async function (req, res) {
     latitude
   } = req.body;
   try {
-    let newEvent = await Event.findOrCreate(
+    const categories= await searchCategory(category)
+    const newEvent = await Event.findOrCreate(
       {where:{
         name:name, date: date, time: time
       },
@@ -38,8 +39,9 @@ router.post("/", async function (req, res) {
         latitude
       }
     });
-    const categories= await searchCategory(category)
-    newEvent.addCategory(categories)
+    
+    newEvent[0].addCategory(categories);
+    
     res.json(newEvent);
   } catch (error) {
     res.json(error);

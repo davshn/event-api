@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
       termsAndconditions: req.body.termsAndconditions,
       password: await bcrypt.hash(req.body.password, salt),
     })
-    newUser.addCategory(categories)
+    newUser.addCategory(categories);
 
     res.status(200).send("Usuario creado con éxito!");
   } catch (error) {

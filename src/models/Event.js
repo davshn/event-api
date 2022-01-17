@@ -8,7 +8,8 @@ module.exports = (sequelize) => {
       id: {
         type: DataTypes.UUID, 
         defaultValue: DataTypes.UUIDV4, 
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
@@ -42,10 +43,6 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: 5.0,
       },
-      // category: {
-      //   type: DataTypes.ARRAY(DataTypes.STRING),
-      //   allowNull: false,
-      // },
       chatBox: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
