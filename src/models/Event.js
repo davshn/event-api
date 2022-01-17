@@ -42,10 +42,10 @@ module.exports = (sequelize) => {
         allowNull: true,
         defaultValue: 5.0,
       },
-      category: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-      },
+      // category: {
+      //   type: DataTypes.ARRAY(DataTypes.STRING),
+      //   allowNull: false,
+      // },
       chatBox: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
