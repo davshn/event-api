@@ -2,18 +2,7 @@ const { Router } = require("express");
 const { User, Category } = require("../db.js");
 const bcrypt = require("bcrypt");
 const router = Router();
-
-async function searchCategory (category){
-  try{
-    const categories= await Category.findAll({
-      where:{name:category}
-    })
-    return categories;
-  }
-  catch(e){   
-    console.log(e);
-  }
-};
+const searchCategory = require("./controls");
 
 router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);

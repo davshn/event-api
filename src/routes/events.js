@@ -1,6 +1,7 @@
 const { Router } = require("express");
-const { Event, User, Category } = require("../db");
+const { Event } = require("../db");
 const { Op } = require("sequelize");
+const searchCategory = require("./controls");
 
 const router = Router();
 
@@ -31,14 +32,14 @@ router.post("/", async function (req, res) {
         place,
         creators,
         price,
-        category,
         eventPic,
         eventVid,
         longitude,
         latitude
       }
-
     });
+    const categories= await searchCategory(category)
+    newEvent.addCategory(categories)
     res.json(newEvent);
   } catch (error) {
     res.json(error);
