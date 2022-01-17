@@ -31,12 +31,12 @@ router.post("/", async function (req, res) {
       defaults:{
         description,
         place,
-        creators,
         price,
         eventPic,
         eventVid,
         longitude,
-        latitude
+        latitude,
+        userId: creators
       }
     });
     
