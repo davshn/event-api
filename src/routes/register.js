@@ -1,25 +1,34 @@
 const { Router } = require("express");
-const { User } = require("../db.js");
+const { User, Category } = require("../db.js");
 const bcrypt = require("bcrypt");
 const router = Router();
 
+async function searchCategory (category){
+  try{
+    const categories= await Category.findAll({
+      where:{name:category}
+    })
+    return categories;
+  }
+  catch(e){   
+    console.log(e);
+  }
+};
+
 router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
-  try {
-    const user = {
+  try{
+    const categories= await searchCategory(req.body.interests);
+    const newUser= await User.create({
       dateOfBirth: req.body.dateOfBirth,
       name: req.body.name,
       profilePic: req.body.profilePic,
       email: req.body.email.toLowerCase(),
       verifyProfile: req.body.verifyProfile,
-      interests: req.body.interests,
       termsAndconditions: req.body.termsAndconditions,
       password: await bcrypt.hash(req.body.password, salt),
-    };
-    console.log(req.body);
-    const created_user = await User.create(user);
-
-   // emailjs.send(ApiKey.SERVICE_ID, ApiKey.TEMPLATE_ID, {email:req.body.email}, ApiKey.USER_ID)
+    })
+    newUser.addCategory(categories)
 
     res.status(200).send("Usuario creado con éxito!");
   } catch (error) {
