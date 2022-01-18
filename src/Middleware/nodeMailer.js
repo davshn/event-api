@@ -5,7 +5,7 @@ port: 465,               // true for 465, false for other ports
 host: "smtp.gmail.com",
    auth: {
         user: 'find.spot.ar.co@gmail.com',
-        pass: 'Probando263732',
+        pass: process.env.MAIL,
      },
 secure: true,
 });
