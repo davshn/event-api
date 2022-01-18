@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const { User, Category } = require("../db.js");
+const { User } = require("../db.js");
 const bcrypt = require("bcrypt");
 const router = Router();
 const searchCategory = require("./controls");
+const transporter = require("../Middleware/nodeMailer");
 
 router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
@@ -13,11 +14,24 @@ router.post("/", async (req, res) => {
       name: req.body.name,
       profilePic: req.body.profilePic,
       email: req.body.email.toLowerCase(),
-      verifyProfile: req.body.verifyProfile,
-      termsAndconditions: req.body.termsAndconditions,
       password: await bcrypt.hash(req.body.password, salt),
     })
     newUser.addCategory(categories);
+    
+    const mailData = {
+      from: 'find.spot.ar.co@gmail.com',  // sender address
+      to: newUser.email,   // list of receivers
+      subject: 'Verifica tu cuenta',
+      text: 'Verifica tu cuenta',
+      html: `<br> Haz click aqui para verificar tu cuenta<br/> <a href="https://find-spot.herokuapp.com/verify?id=${newUser.verificationCode}&mail=${newUser.email}" >Verificar</a>`,
+    };
+
+    transporter.sendMail(mailData, function (err, info) {
+      if(err)
+        console.log("No enviado")
+      else
+        console.log("Enviado");
+      });
 
     res.status(200).send("Usuario creado con éxito!");
   } catch (error) {
