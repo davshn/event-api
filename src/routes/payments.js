@@ -5,12 +5,14 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const router = Router();
 
 router.post("/", async (req, res) => {
+
   try {
-    const { name } = req.body;
+    const { name , precio } = req.body;
+
     if (!name) return res.status(400).json({ message: "Debes ingresar para comprar" });
 
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(25 * 20),
+      amount: precio,
       currency: "eur",
       payment_method_types: ["card", "paypal"],
       metadata: { name },
@@ -18,6 +20,7 @@ router.post("/", async (req, res) => {
     const clientSecret = paymentIntent.client_secret;
 
     res.json({ message: "Payment initiated ", clientSecret });
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "payment error back " });
