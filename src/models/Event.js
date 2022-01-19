@@ -35,12 +35,7 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      rating: {
-        type: DataTypes.FLOAT,
-        allowNull: true,
-        defaultValue: 5.0,
-      },
-      chatBox: {
+        chatBox: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: true,
       },

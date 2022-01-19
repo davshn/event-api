@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Event,Category } = require("../db")
+const { Event, Category, User } = require("../db")
 
 const router = Router();
 
@@ -7,7 +7,20 @@ router.get('/:eventId', async function(req, res) {
     
     const eventId = req.params.eventId;
 
-    const event = await Event.findAll({where:{id:eventId}},{include:Category});
+    const event = await Event.findAll({
+        where: {
+            id: eventId
+        },
+        include: [
+            {
+            model: User,
+            attributes: ["name"]
+        },
+        {
+            model: Category,
+            attributes: ["name"]
+        }]
+    });
 
     event.length
     ?res.json(event)
