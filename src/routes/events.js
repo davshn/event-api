@@ -2,10 +2,11 @@ const { Router } = require("express");
 const { Event, Category } = require("../db");
 const { Op } = require("sequelize");
 const searchCategory = require("./controls");
+const auth = require("../Middleware/auth");
 
 const router = Router();
 
-router.post("/", async function (req, res) {
+router.post("/",auth, async function (req, res) {
   const {
     name,
     description,

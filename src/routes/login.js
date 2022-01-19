@@ -33,6 +33,7 @@ router.post("/", async (req, res) => {
         name: user.name,
         interests: user.interests,
         profilePic: user.profilePic,
+        verifyProfile:user.verifyProfile
       };
 
       res.status(200).json(loggedUser);
