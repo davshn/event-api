@@ -117,4 +117,60 @@ router.post("/filters", async (req, res) => {
   console.log(options);
 });
 
+// con esta ruta borra el evento de la base de datos -- si pongo router.put("/...", ......) no funciona
+
+router.get("/updateEvent", async (req, res) => {
+  try {
+    const eventId = req.body.id;
+    
+    const eventUpdate = await Event.findOne({ where: { id: eventId } });
+    console.log(eventUpdate)
+    if (eventUpdate) {
+      await eventUpdate.set({
+        name: req.body.name,
+        description: req.body.description,
+        place: req.body.place,
+        date: req.body.date,
+        time: req.body.time,
+        price: req.body.price,
+        eventPic: req.body.eventPic,
+        eventVid: req.body.eventVid,
+        longitude: req.body.longitude,
+        latitude: req.body.latitude,
+      })
+      
+      await eventUpdate.save()
+
+      res.status(200).send("Evento Editado");
+    }
+    
+    else res.status(404).send("Evento no encontrado");
+    
+  } catch (error) {
+    res.status(400).send("Error al editar el evento");
+  }
+  
+})
+
+// con esta ruta borra el evento de la base de datos -- si pongo router.delete("/...", ......) no funciona
+
+router.get("/deleteEvent", async (req, res) => {
+  try {
+    const eventId = req.body.id;
+    
+    const eventDelete = await Event.findOne({ where: { id: eventId } });
+    
+    if (eventDelete) {
+      await eventDelete.destroy()
+      res.status(200).send("Evento Borrado");
+    }
+    
+    else res.status(404).send("Evento no encontrado");
+    
+  } catch (error) {
+    res.status(400).send("Error borrando el evento");
+  }
+  
+})
+
 module.exports = router;
