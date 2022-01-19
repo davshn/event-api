@@ -32,6 +32,7 @@ router.post("/", async (req, res) => {
         id: user.id,
         name: user.name,
         interests: user.interests,
+        profilePic: user.profilePic,
       };
 
       res.status(200).json(loggedUser);
