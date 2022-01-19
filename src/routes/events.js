@@ -77,7 +77,7 @@ router.post("/filters", async (req, res) => {
     initialPrice,
     finalPrice,
   } = req.body;
-  console.log(req.body)
+ 
 
   let options = { where: { [Op.and]: [] } };
 
@@ -114,7 +114,7 @@ router.post("/filters", async (req, res) => {
   Event.findAll(options).then((response) => {
     res.send(response);
   });
-  console.log(options);
+  
 });
 
 module.exports = router;

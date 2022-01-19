@@ -35,7 +35,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Event, User, Category } = sequelize.models;
+const { Event, User, Category, Ticket } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
@@ -52,6 +52,9 @@ Category.belongsToMany(Event, { through: "eventcategory" });
 User.belongsToMany(Category, { through: "usercategory" });
 Category.belongsToMany(User, { through: "usercategory" });
 
+//Relación entre usuario y tickets 1:M 
+User.hasMany(Ticket)
+Ticket.belongsTo(User)
 
 
 module.exports = {
