@@ -72,6 +72,7 @@ router.get("/", async (req, res) => {
 router.post("/filters", async (req, res) => {
   const { name, category, initialDate, finalDate, initialPrice, finalPrice } =
     req.body;
+    console.log(req.body)
 
   let options = {
     where: { [Op.and]: [] },
