@@ -10,8 +10,7 @@ router.get("/",  async (req, res) => {
     const user = await User.findOne({ where: { email } });
     
     if (user.verificationCode === verificationId) {
-      console.log("Usuario encontrado")
-      await User.update({ where: { email }, user: { verifyProfile: true } });
+      await User.update({ verifyProfile: true }, { where: { email } });
       res.status(200).send("Usuario Verificado");
     }
     
