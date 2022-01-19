@@ -109,6 +109,7 @@ router.post("/filters", async (req, res) => {
   Event.findAll(options).then((response) => {
     res.send(response);
   });
+  console.log(response)
   console.log(options);
 });
 
