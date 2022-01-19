@@ -1,4 +1,4 @@
-// esto es una prueba de brnach Mauro
+
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
