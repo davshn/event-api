@@ -84,7 +84,7 @@ router.post("/filters", async (req, res) => {
   }
 
   if (category) {
-    options.where[Op.and].push({  });
+    options.where[Op.and].push({});
     options.include = [{ model: Category, where: { name: category } }];
   }
 
@@ -110,7 +110,7 @@ router.post("/filters", async (req, res) => {
   Event.findAll(options).then((response) => {
     res.send(response);
   });
-  console.log(response)
+
   console.log(options);
 });
 
