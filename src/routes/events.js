@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Event } = require("../db");
+const { Event, Category } = require("../db");
 const { Op } = require("sequelize");
 const searchCategory = require("./controls");
 
@@ -14,21 +14,23 @@ router.post("/", async function (req, res) {
     time,
     creators,
     price,
-    rating,
+
     category,
     eventPic,
     eventVid,
     comment,
     longitude,
-    latitude
+    latitude,
   } = req.body;
   try {
-    const categories= await searchCategory(category)
-    const newEvent = await Event.findOrCreate(
-      {where:{
-        name:name, date: date, time: time
+    const categories = await searchCategory(category);
+    const newEvent = await Event.findOrCreate({
+      where: {
+        name: name,
+        date: date,
+        time: time,
       },
-      defaults:{
+      defaults: {
         description,
         place,
         price,
@@ -36,12 +38,12 @@ router.post("/", async function (req, res) {
         eventVid,
         longitude,
         latitude,
-        userId: creators
-      }
+        userId: creators,
+      },
     });
-    
+
     newEvent[0].addCategory(categories);
-    
+
     res.json(newEvent);
   } catch (error) {
     res.json(error);
@@ -68,29 +70,20 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/filters", async (req, res) => {
-  const {
-    name,
-    category,
-    rating,
-    initialDate,
-    finalDate,
-    initialPrice,
-    finalPrice,
-  } = req.body;
-  console.log(req.body)
+  const { name, category, initialDate, finalDate, initialPrice, finalPrice } =
+    req.body;
 
-  let options = { where: { [Op.and]: [] } };
+  let options = {
+    where: { [Op.and]: [] },
+    include: [{ model: Category, required: true }],
+  };
 
   if (name) {
     options.where[Op.and].push({ name: { [Op.iLike]: "%" + name + "%" } });
   }
 
-  if (rating) {
-    options.where[Op.and].push({ rating: { [Op.gte]: rating } });
-  }
-
   if (category) {
-    options.where[Op.and].push({ category: { [Op.contains]: category } });
+    options.include = [{ model: Category, where: { name: category } }];
   }
 
   if ((initialDate, finalDate)) {
@@ -98,6 +91,7 @@ router.post("/filters", async (req, res) => {
       [Op.and]: [
         { date: { [Op.gte]: initialDate } },
         { date: { [Op.lte]: finalDate } },
+        
       ],
     });
   }
