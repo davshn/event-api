@@ -39,13 +39,15 @@ router.post("/", async (req, res) => {
 
 router.get("/updateUser", async (req, res) => {
   try {
-    const id = req.body.id;
+    const idUser = req.body.id;
 
-    const userUpdate = await User.findOne({ where: { id: id } });
+    const userUpdate = await User.findOne({ where: { id: idUser } });
 
     if (userUpdate) {
       await userUpdate.set({
         name: req.body.name,
+        email:req.body.email,
+        profilePic:req.body.profilePic
       });
 
       await userUpdate.save();
