@@ -71,12 +71,16 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/filters", async (req, res) => {
+  let date = new Date();
+  let today=date.toISOString().split('T')[0]
+
+
   const { name, category, initialDate, finalDate, initialPrice, finalPrice } =
     req.body;
-    console.log(req.body)
+ 
 
   let options = {
-    where: { [Op.and]: [] },
+    where: { [Op.and]: [{date: { [Op.gte]: today}} ] },
     include: [{ model: Category, required: true }],
   };
 
@@ -112,7 +116,7 @@ router.post("/filters", async (req, res) => {
     res.send(response);
   });
 
-  console.log(options);
+
 });
 
 // con esta ruta borra el evento de la base de datos -- si pongo router.put("/...", ......) no funciona
