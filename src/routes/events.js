@@ -129,7 +129,7 @@ router.post("/filters", async (req, res) => {
 
 // con esta ruta edita el evento de la base de datos -- si pongo router.put("/...", ......) no funciona
 
-router.get("/updateEvent", async (req, res) => {
+router.post("/updateEvent", async (req, res) => {
   try {
     const eventId = req.body.id;
     const editCapacity = req.body.capacity 
@@ -178,7 +178,7 @@ router.get("/updateEvent", async (req, res) => {
   
 })
 
-router.get("/deleteEvent", async (req, res) => {
+router.post("/deleteEvent", async (req, res) => {
   try {
     const eventId = req.body.id;
     
