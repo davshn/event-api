@@ -79,7 +79,8 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/filters", async (req, res) => {
-  let date = new Date();
+  try {
+    let date = new Date();
   let today=date.toISOString().split('T')[0]
 
 
@@ -120,17 +121,29 @@ router.post("/filters", async (req, res) => {
     });
   }
 
-  Event.findAll(options).then((response) => {
-    res.send(response);
-  });
+  const all = await Event.findAll(options)
+  
+  const filterAll = all.filter(el=> el.isDeleted === false)
+  
+  res.status(200).send(filterAll)
 
 
+  // Event.findAll(options).then((response) => {
+  //   res.send(response);
+  // });
+
+
+  } catch (error) {
+    console.log(error)
+  }
 });
+  
 
 // con esta ruta edita el evento de la base de datos -- si pongo router.put("/...", ......) no funciona
 
 router.post("/updateEvent", async (req, res) => {
   try {
+    console.log(req.body)
     const eventId = req.body.id;
     const editCapacity = req.body.capacity 
     const eventToUpdate = await Event.findOne({ where: { id: eventId } });
@@ -180,6 +193,7 @@ router.post("/updateEvent", async (req, res) => {
 
 router.post("/deleteEvent", async (req, res) => {
   try {
+    console.log(req.body)
     const eventId = req.body.id;
     
     const eventDelete = await Event.findOne({ where: { id: eventId } });
