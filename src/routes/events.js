@@ -138,7 +138,7 @@ router.get("/updateEvent", async (req, res) => {
       if ( eventToUpdate.availableStock >= difCapacity) {
         // Case 1: 700 > 800 (false)  Si mi stock es 700 >= y la diff es de 800, da false y no entra
         // Case 2: 700 > -450 (true)  Si mi stock es de 700 >= y la dif es de -300, da true y entra para editar el evento
-        const newStock = - editCapacity - eventToUpdate.capacity + eventToUpdate.availableStock
+        const newStock = editCapacity - eventToUpdate.capacity + eventToUpdate.availableStock
           // Case 1: No entró antes
           // Case 2: nuevo stock 1150 = 1450 - 1000 + 700    Tengo 1450 nuevos lugares - 1000 que tenia + 700 de stock
           // esta logica esta mal, el available stock no es lo que tiene que ser
