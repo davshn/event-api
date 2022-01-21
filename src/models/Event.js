@@ -59,6 +59,18 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      capacity: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      availableStock: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
     },
     { timestamps: false }
   );
