@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { User } = require("../db.js");
+const { User, Category } = require("../db.js");
 const bcrypt = require("bcrypt");
 const router = Router();
 const searchCategory = require("./controls");
@@ -46,8 +46,8 @@ router.get("/updateUser", async (req, res) => {
     if (userUpdate) {
       await userUpdate.set({
         name: req.body.name,
-        email:req.body.email,
-        profilePic:req.body.profilePic
+        email: req.body.email,
+        profilePic: req.body.profilePic,
       });
 
       await userUpdate.save();
@@ -57,6 +57,30 @@ router.get("/updateUser", async (req, res) => {
   } catch (error) {
     res.status(400).send("Error al editar el usuario");
   }
+});
+
+const getUsers = async () => {
+  try {
+    const users = await User.findAll({ include: Category });
+    const ordered = users.map((el) => {
+      return {
+        id: el.id,
+        name: el.name,
+        dateOfBirth: el.dateOfBirth,
+        profilePic: el.profilePic,
+        email: el.email,
+        categories:el.categories.map(c=>c.name)
+      };
+    });
+    return ordered;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+router.get("/users", async (req, res) => {
+  const allUsers = await getUsers();
+  res.status(200).send(allUsers);
 });
 
 module.exports = router;
