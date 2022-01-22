@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const express = require("express")
-
+const Tickets = require("./tickets")
 const payments = require("./payments")
 const register=require("./register")
 const login = require("./login")
@@ -12,6 +12,9 @@ const verify = require("./verify")
 const router = Router();
 
 router.use("/stripe", express.raw({ type: "*/*" }));
+
+router.use("/infoTicket",Tickets)
+
 router.use("/pay",payments)
 router.use("/register",register)
 router.use("/login",login)
