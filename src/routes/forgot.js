@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
   try {
-    const email = req.body.email;
+    const email = req.body.email.toLowerCase();
     const userUpdate = await User.findOne({ where: { email: email } });
 
     const mailData = {
