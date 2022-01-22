@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/updateUser", async (req, res) => {
+router.post("/updateUser", async (req, res) => {
   try {
     const idUser = req.body.id;
 
