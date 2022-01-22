@@ -42,12 +42,12 @@ router.post("/updateUser", async (req, res) => {
     const idUser = req.body.id;
 
     const userUpdate = await User.findOne({ where: { id: idUser } });
-
+    const salt = await bcrypt.genSalt(10);
     if (userUpdate) {
       await userUpdate.set({
         name: req.body.name,
-        email: req.body.email,
         profilePic: req.body.profilePic,
+        password: await bcrypt.hash(req.body.password, salt),
       });
 
       await userUpdate.save();
@@ -69,7 +69,7 @@ const getUsers = async () => {
         dateOfBirth: el.dateOfBirth,
         profilePic: el.profilePic,
         email: el.email,
-        categories:el.categories.map(c=>c.name)
+        categories: el.categories.map((c) => c.name),
       };
     });
     return ordered;
