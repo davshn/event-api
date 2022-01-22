@@ -61,11 +61,11 @@ module.exports = (sequelize) => {
       },
       capacity: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
       },
       availableStock: {
         type: DataTypes.INTEGER,
-        allowNull: true
+        allowNull: false
       },
       isDeleted: {
         type: DataTypes.BOOLEAN,

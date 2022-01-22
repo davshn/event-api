@@ -167,11 +167,11 @@ router.post("/updateEvent", async (req, res) => {
           time: req.body.time,
           price: req.body.price,
           eventPic: req.body.eventPic,
-      //    eventVid: req.body.eventVid,
+          eventVid: req.body.eventVid,
           longitude: req.body.longitude,
           latitude: req.body.latitude,
           capacity: req.body.capacity,
-      //    availableStock: newStock
+          availableStock: newStock
         })
         
         await eventToUpdate.save()
