@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const router = Router();
 const searchCategory = require("./controls");
 const transporter = require("../Middleware/nodeMailer");
+const auth = require("../Middleware/auth");
 
 router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
@@ -37,7 +38,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/updateUser", async (req, res) => {
+router.post("/updateUser",auth, async (req, res) => {
   try {
     const idUser = req.body.id;
 
