@@ -17,7 +17,7 @@ Nuestro proyecto surge de la necesidad de encontrar una plataforma móvil que pe
 * PostgreSQL
 * Librerias destacadas: `bcrypt`, `Json web token authentication`, `country-state-city`
 
-# Documentación para inicilizar el back-end de la app 
+# Documentación para inicializar el back-end de la app 
 
 ## Primeros Pasos
 
