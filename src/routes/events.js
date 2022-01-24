@@ -143,7 +143,7 @@ router.post("/filters", async (req, res) => {
 
 router.post("/updateEvent", async (req, res) => {
   try {
-    console.log(req.body)
+    // console.log(req.body)
     const eventId = req.body.id;
     const editCapacity = req.body.capacity 
     const eventToUpdate = await Event.findOne({ where: { id: eventId } });
@@ -158,7 +158,7 @@ router.post("/updateEvent", async (req, res) => {
         const newStock = editCapacity - eventToUpdate.capacity + eventToUpdate.availableStock
           // Case 1: No entró antes
           // Case 2: nuevo stock 1150 = 1450 - 1000 + 700    Tengo 1450 nuevos lugares - 1000 que tenia + 700 de stock
-          // esta logica esta mal, el available stock no es lo que tiene que ser
+
         await eventToUpdate.set({
           name: req.body.name,
           description: req.body.description,
@@ -193,7 +193,7 @@ router.post("/updateEvent", async (req, res) => {
 
 router.post("/deleteEvent", async (req, res) => {
   try {
-    console.log(req.body)
+    // console.log(req.body)
     const eventId = req.body.id;
     
     const eventDelete = await Event.findOne({ where: { id: eventId } });
