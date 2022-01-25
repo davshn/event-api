@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 
       for (let i = 0 ; i < allItems.length -1 ; i++){ 
        
-        let event = await Event.findOne({ where: { id: allItems[i].id } });
+        let event = await Event.findOne({ where: { id: allItems[i].eventId } });
         let quantity = allItems[i].quantity 
 
         if (event) {
