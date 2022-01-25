@@ -54,9 +54,9 @@ Category.belongsToMany(User, { through: "usercategory" });
 User.hasMany(Ticket);
 Ticket.belongsTo(User);
 
-// Relación entre Ticket y Evento M:1
-Ticket.belongsTo(Event);
+// Relación entre Ticket y Evento 1:M
 Event.hasMany(Ticket);
+Ticket.belongsTo(Event);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
