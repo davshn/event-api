@@ -10,22 +10,8 @@ const router = Router();
 router.get("/", async (req, res) => {
     try {
         const userId = req.body.userId 
-        
-        const allTickets = await Ticket.findAll()   
 
-        // const allTickets = await Ticket.findAll({where: {userId: userId}})  // el userId esta null
-        // const allTickets = await User.findOne({
-        //     where: {
-        //         id: userId
-        //     },
-        //     include: [
-        //         {
-        //         model: Ticket,
-        //         attributes: ["idTicket","quantity", "place", "date", "time", "price", "createdAt"]
-        //         }
-        //     ],
-              
-        // });
+        const allTickets = await Ticket.findAll({where: {userId: userId}})
 
         res.status(200).json(allTickets)    
     
@@ -34,7 +20,6 @@ router.get("/", async (req, res) => {
         res.status(404).send({ message: "Usuario no encontrado"})
     }
 })
-
 
 // esta ruta es para el detalle de cada ticket
 
@@ -72,7 +57,6 @@ router.post("/createTicket", async (req, res) => {
 
     try {
         let allItems = req.body;
-        console.log(allItems)
         // creo 1 ticket por cada objeto del carrito menos el último que trae toda la data junta
         for (let i = 0 ; i < allItems.length -1 ; i++){ 
             
@@ -83,23 +67,22 @@ router.post("/createTicket", async (req, res) => {
                 time: allItems[i].time ,
                 quantity: allItems[i].quantity,
                 price: allItems[i].price,
-                //eventId: allItems[i].eventId
-                //userId: allItems[i].userId,
+                eventId: allItems[i].eventId,
+                userId: allItems[i].userId,
             });
-            // newTicket.addEvent(allItems[i].eventId)
-            // newTicket.addUSer(allItems[i].userId)
-
+            
         //actualizo la cantidad del availableStock del evento
             let eventSearchId = allItems[i].eventId
+            
             let eventToUpdateStock = await Event.findOne({ where: { id: eventSearchId } });
-            console.log(eventToUpdateStock)
-            // let newStock = stockToUpdate.availableStock - allItems[i].quantity
+            
+            let newStock = eventToUpdateStock.availableStock - allItems[i].quantity
 
-            // await stockToUpdate.set({
-            //     availableStock: newStock
-            // })
+            await eventToUpdateStock.set({
+                availableStock: newStock
+            })
                 
-            // await eventToUpdate.save()
+            await eventToUpdateStock.save()
         }
 
         res.status(200).json({ message: "Ticket creado con éxito" });
