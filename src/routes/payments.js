@@ -5,14 +5,11 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const router = Router();
 
 router.post("/", async (req, res) => {
-  console.log("No esta entrando aca")
+  
   try {
     const { name , price } = req.body;
-    
+
     if (!name) return res.status(403).json({ message: "Debes estar logueado para comprar entradas" });
-
-    // aca hacer logica para ver si hay stock, responder  res.status(403).json({ message: "No hay stock" });
-
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: price,

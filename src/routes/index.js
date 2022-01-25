@@ -10,6 +10,9 @@ const events=require("./events")
 const categories = require("./categories")
 const country = require("./country-city")
 const verify = require("./verify")
+const infoTicket = require("./infoTicket")
+const stock = require("./stock")
+
 const router = Router();
 
 router.use("/stripe", express.raw({ type: "*/*" }));
@@ -22,6 +25,7 @@ router.use("/categories",categories)
 router.use("/country-city", country)
 router.use("/verify",verify)
 router.use("/forgot",forgot)
-
+router.use("/infoTicket",infoTicket)
+router.use("/stock",stock)
 
 module.exports = router;
