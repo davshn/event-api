@@ -60,6 +60,10 @@ router.post("/createTicket", async (req, res) => {
         // creo 1 ticket por cada objeto del carrito menos el último que trae toda la data junta
         for (let i = 0 ; i < allItems.length -1 ; i++){ 
             
+            if (allItems[i].quantity === 0 ){
+                continue
+            }
+
             let newTicket = await Ticket.create({
                 eventName: allItems[i].eventName ,
                 place: allItems[i].place ,

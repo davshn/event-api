@@ -36,10 +36,19 @@ router.get("/", async (req, res) => {
       const allItems = req.body;
       let stockOK = true
 
+      if (allItems.length === 1) {
+        res.status(404).json({ message: "El carrito está vacío" });
+      }
+
       for (let i = 0 ; i < allItems.length -1 ; i++){ 
-       
+        
+
         let event = await Event.findOne({ where: { id: allItems[i].eventId } });
         let quantity = allItems[i].quantity 
+
+        if (quantity === 0) {
+          continue
+        }
 
         if (event) {
           let stock = event.availableStock
