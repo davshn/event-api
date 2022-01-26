@@ -7,7 +7,7 @@ const router = Router();
 
 // esta ruta es para ver todos los tickets de esa persona
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         const userId = req.body.userId 
 
