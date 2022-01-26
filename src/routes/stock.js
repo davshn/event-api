@@ -5,7 +5,7 @@ const auth = require("../Middleware/auth");
 
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
       // console.log(req.body)
       const eventId = req.body.id;
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
     
   })
 
-  router.get("/allCartItems", async (req, res) => {
+  router.post("/allCartItems", async (req, res) => {
     try {
       const allItems = req.body;
       let stockOK = true
