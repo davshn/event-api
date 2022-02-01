@@ -6,6 +6,8 @@ const searchCategory = require("./controls");
 const transporter = require("../Middleware/nodeMailer");
 const auth = require("../Middleware/auth");
 
+
+
 router.post("/", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   try {
@@ -22,9 +24,21 @@ router.post("/", async (req, res) => {
     const mailData = {
       from: "find.spot.ar.co@gmail.com", // sender address
       to: newUser.email, // list of receivers
-      subject: "Verifica tu cuenta",
-      text: "Verifica tu cuenta",
-      html: `<br> Haz click aqui para verificar tu cuenta<br/> <a href="https://find-spot.herokuapp.com/verify?id=${newUser.verificationCode}&mail=${newUser.email}" >Verificar</a>`,
+      subject: "Verifica tu cuenta de findSpot",
+      text: "Verifica tu cuenta de findSpot",
+      //html: `<br> Haz click aqui para verificar tu cuenta<br/> <a href="https://find-spot.herokuapp.com/verify?id=${newUser.verificationCode}&mail=${newUser.email}" >Verificar</a>`,
+          
+      html: `
+            <h3>Bienvenid@ a la comunidad findSpot, ${newUser.name}.</h3>
+            <p>Somos una app con un objetivo claro, conectar personas con experiencias únicas.</p>
+            <p>Ya puedes ingresar y disfrutar de todos los eventos que tenemos para vos.</p>
+            <span>Si quieres verificar tu cuenta, puedes hacer click en el siguiente <span/>
+            <a href="https://find-spot.herokuapp.com/verify?id=${newUser.verificationCode}&mail=${newUser.email}" >link</a>
+            <br></br>
+            <h4> Muchas gracias por elegirnos,</h4>
+            <h4> Equipo de findSpot <img src="https://res.cloudinary.com/findspot/image/upload/v1643746281/logo_ckx5h2.png" alt="Logo not Found" width="18" height="18"></h4>
+            
+      `
     };
 
     transporter.sendMail(mailData, function (err, info) {
