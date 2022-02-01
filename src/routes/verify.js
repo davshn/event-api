@@ -11,10 +11,10 @@ router.get("/",  async (req, res) => {
     
     if (user.verificationCode === verificationId) {
       await User.update({ verifyProfile: true }, { where: { email } });
-      res.status(200).send("Usuario Verificado");
+      res.status(200).send("Tu usuario ha sido verificado. Diviértete en findSpot");
     }
     
-    else res.status(404).send("Usuario no encontrado");
+    else res.status(404).send("Upps... no hemos podido encontrar a tu usuario.");
     
   } catch (error) {
     res.status(400).send("Error en la verificacion");
